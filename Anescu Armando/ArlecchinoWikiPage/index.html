@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arlecchino</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Arlecchino</h1>
+    <p>Arlecchino is a 5 ⭐ pyro character. She is the 4th harbinger known also by the code name 'The Knave'</p>
+    <img id="DripCard" src="Arlecchino_Card.jpg" height="600" width="300" alt="Arlecchino_Card" >
+    <p>Livelo:<label id ="CountLabel">1</label></p>
+    <div id="BtnContainer">
+        <button id="BtnDecrease" class="buttonLevel">Diminuisci</button>
+        <button id="BtnReset"class="buttonLevel">Reset</button>
+        <button id="BtnIncrease"class="buttonLevel">Aumenta</button>
+    </div>
+    <br>
+
+   <table>
+        <tr>
+            <th>HP</th>
+            <th>ATK</th>
+            <th>DEF</th>
+            <th>Crit Dmg</th>
+        </tr>
+        <tr>
+            <td id="HP">1,020.05</td>
+            <td id="ATK">26.63</td>
+            <td id="DEF">59.53</td>
+            <td id="Crit-Dmg">-</td>
+          </tr>
+   </table>
+   <br>
+   <br>
+   <p>
+    The Knave, Fourth of the Fatui Harbingers.
+    The ancient balemoon blood flows within her fate, granting her all that the dynasty once had — yearning, power, and curses alike.
+    In her short life, she has supped of countless agonies and drunk deep of the cup of suffering, just as her ancestors once did when they imbibed poison at the rising of the dark sun.
+
+    Still, neither suffering nor fate has proved a fatal toxin to her.
+    Instead, they are the firewood fueling her quietly burning hearth, and are the fire bringing her children warmth.
+
+    Someday, the hearth-fire's faint radiance shall burn the old world away, incinerating the final scion of the baleful moon as well.
+    Someday, these still immature children will break free of ancient fate and usher in the future without tears she dreams of.
+    But until that time comes, until dawn breaks, the one named Peruere shall stand guard over their fragile, sweet dreams.
+    "If fate should pave for us a pale road, let us dye it the bloody crimson of the bale moon."
+    "Even a flickering, famished fire can burn all suffering away before daybreak."
+   </p>
+   <br>
+   <br>
+   <br>
+   <br>
+   <div id="TalentBox">
+    <h2>Talents</h2>
+    <p>"Invitation to a Beheading"</p>
+    <b>Normal Attack</b>
+    <br>Performs up to 6 consecutive spear strikes.<br>
+    <br><b>Charged Attack</b><br>Consumes a fixed amount of Stamina, dashing toward a nearby opponent and cleaving once.<br>Continuously holding this button will cause Arlecchino to consume Stamina and engage in up to 5s of high-speed movement.<br><br><b>Plunging Attack</b><br>Plunges from mid-air to strike the ground below, damaging opponents along the path and dealing AoE DMG upon impact.<br><br><b>Masque of the Red Death</b><br>When Arlecchino has a Bond of Life equal to or greater than 30% of her Max HP, she will enter the "Masque of the Red Death" state, where her Normal, Charged, and Plunging Attacks will be converted to deal<b>Pyro DMG</b></span>. This cannot be overridden.<br>When in the "Masque of the Red Death" state, Arlecchino's Normal Attacks will deal extra DMG to opponents on hit that scales off her ATK multiplied by a certain ratio of her current Bond of Life percentage. This will consume 7.5% of said current Bond of Life. Her Bond of Life can be consumed this way every 0.03s. When her Bond of Life is consumed in this manner, All Is Ash's CD will decrease by 0.8s.
+    <ul>
+    <li>Unlike most Polearm users, Arlecchino does not need to perform a Normal Attack before every Charged Attack.</li>
+    <li>The third hit of Arlecchino's Normal Attack will pull enemies towards her.</li>
+    <li>If Arlecchino wields any other polearm other than Crimson Moon's Semblance, her polearm will have a yellow scythe blade starting from the second hit of her Normal Attack combo.</li>
+    <li>While holding her charged attack and during her high speed movement, she will sprout a red wing and be able to fly over the surface of water</li>
+    <li>Her Normal Attack AoE is increased during her "Masque of the Red Death" state.</li>
+    <li>She can retain her pyro infusion even if she is swapped off field and swapped back in so long as her Bond of Life is greater than 30% HP.</li>
+    </ul>
+    <br>
+    <p>"All is Ash"</p>
+        <p>Summons forth Balemoon Bloodfire, dealing<b>Pyro DMG</b> to multiple nearby opponents and performing a dash-cleave against one of them, dealing <b>AoE Pyro DMG</b>.<br>
+        Opponents hit by the aforementioned attack will have a Blood-Debt Directive applied to them. </p><br>
+        <b>Blood-Debt Directive</b>
+        </b><br>
+        <ul>
+            <li>Lasts 30s. Every 5s, it will deal 1 instance of <b>Pyro DMG</b> to the opponent. Max 2 instances. This DMG will be considered Elemental Skill DMG.</li>
+            <li>When Arlecchino uses a "Invitation to a Beheading". Charged Attack or her Elemental Burst, Balemoon Rising">Balemoon Rising, she will absorb and clear nearby Blood-Debt Directives. Each Directive absorbed grants her a "Bond of Life" worth 65% of her Max HP.</li>
+            <li>The maximum value of the Bond of Life she can be granted through Blood-Debt Directives within 35s after using her Elemental Skill is 145% of her Max HP. Using the Elemental Skill again during this duration will restart the count on duration and the limit on the value of Bond of Life she may gain from Blood-Debt Directives.</li>
+        </ul>
+       
+    <script src="script.js"></script>
+</body>
+</html>

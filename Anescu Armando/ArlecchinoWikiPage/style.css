@@ -1,0 +1,69 @@
+body
+{
+    background-color: darkred;
+    color: antiquewhite;
+    border-color: crimson;
+    border-style: dashed;
+    padding: 20px;
+    font-size: 20px;
+    font-family:'Times New Roman', Times, serif;
+
+}
+p
+{
+    /* background-color: red; */
+    font-style: italic;
+}
+img {
+    float: right;
+    top: 5px;
+    margin-right: 20px;
+    
+}
+#CountLabel
+{
+    font-size: 20px;
+    text-align: center;
+    font-family: Helvetica;
+}
+table {
+    /* border: 5px solid antiquewhite; */
+    width: 5px;
+    text-align: center;
+    /* padding: 5px;  */
+}
+th, td
+{
+    border: 2px solid antiquewhite;
+    width: 5px;
+    text-align: center;
+    padding: 5px;  
+    width: 5px;
+    /* padding: 5px;  */
+}
+.buttonLevel
+{
+    padding: 4px;
+    color: antiquewhite;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    background-color: crimson;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+.buttonLevel:hover
+{
+    background-color:rgb(120, 25, 18);
+}
+li
+{
+    text-decoration:underline white;
+}
+#TalentBox
+{
+    border: 4px solid black;
+    border-radius: 5px;
+    padding: 4px;
+    background-color: rgb(105, 7, 7);
+}
