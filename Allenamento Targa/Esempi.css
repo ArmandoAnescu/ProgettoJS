@@ -1,0 +1,299 @@
+/*body{    
+    background-color: green;
+}
+#p1{
+    color: tomato;           esempi backgroud
+}*/
+/*h1{
+    font-family: verdana,Arial;
+}
+p{
+    font-family: "lucida console", "courier new";
+    font-weight: bold;          esempi font testo
+    font-style: italic;
+}*/
+/*h1{
+    border-style:solid;
+    border-width: 4px;
+    border-color: aqua;         esempi bordi testo
+    border-radius: 4px;
+}
+#p1{
+    border-bottom: 3px solid red;
+    border-top: 3px solid yellow;
+}*/
+/*h1{
+    text-shadow: 3px 5px 5px red, -3px -5px 5px cyan;
+}
+#box1{
+    width: 100px;               esempi shadow e box
+    height: 100px;
+    background-color: wheat;
+    box-shadow: 3px 3px 5px;
+}*/
+/*body{
+    margin: 0px;
+}
+.box{
+    border:5px solid;
+    font-size: 5em;
+    width: 250px;
+    height: 250px;
+}
+#box1{
+    background-color: red;
+    margin: ;
+}
+#box2{
+    background-color: cyan;
+}*/
+/*body{
+    border: 3px solid;
+    display: flow-root;
+}
+#img1{
+    float: right;       spostare le immagini all'interno del file
+    margin-right: 10px;
+}
+#img2{
+    float: left;
+    margin: 10px;
+}*/
+/*div{
+    border: 2px solid;
+    height: 75px;       esempio overflow testo
+    overflow: auto;
+}*/
+/*div{
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    display: none;
+    visibility: hidden;
+}                       proprietà di visualizzazione
+span{
+    background-color: blue;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}*/
+/*.containder{
+    background-color: grey;
+    height: 100vh;
+}
+.box{
+    background-color: white;
+    border: 2px solid;
+    padding:25px;       gestione altezza/lunghezza
+    box-sizing: border-box;
+    height: auto;
+    width: 50%;
+    float: left;
+    text-align: center;
+    min-height: 100%;
+
+}*/
+/*#box1{
+    width: 200px;
+    height: 200px;
+    background-color: cyan;
+    position:fixed;
+    top: 0px;
+}
+#box2{              esempi di spostamento(relative-fixed-absolute-sticky-static)
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position:static ;
+    top: 50px;
+    left: 50px;
+}*/
+/*body{
+    background-image: url("immagini\ css/image.png");
+    background-repeat: no-repeat;
+    background-position: center;     immagine background
+    background-attachment: fixed;
+    background-size: cover;
+}*/
+/*#container {
+    border: 2px solid;
+}                       operatori | - > - +
+#container + p{
+    background-color: yellow;
+}*/
+/*a:link{
+    color: lightblue !important;
+}
+a:hover{
+    color: lightgreen ;
+    font-size: 1.1em;
+}                      stile del collegamento a qualcosa
+a:active{
+    color: blue !important;
+    font-size: 1.1em;
+}
+a:visited{
+    color: gray !important;
+}*/
+/*li:nth-child(){
+    background-color: yellow !important;
+}                       
+metodo per designare cose singole utilizzando even(n pari), odd(n dispari), numero+n(evidenzia i multipli del numero)
+#greeting p{
+    background-color: lightblue !important;
+    padding: 10px !important;
+    display:none
+}                       pseudo classi
+#greeting:hover p{
+    display: block;
+}*/
+/*h1::first-letter{
+    font-size: 2em !important;
+    font-size: italic;
+}
+p::first-line{
+    background-color: yellow !important;
+}
+p::selection{
+    color:green !important;     pseudo elementi
+    background-color: black !important;
+}
+#fruit li::marker{
+    content:"";
+    color: green !important;
+}
+#apple::after{
+    content:"";
+}
+#orange::after{
+    content: "";
+}
+#banana::after{
+    content: "";
+}*/
+/*.pagination{
+    text-align: center !important;
+}
+.pagination a{
+    color: black !important;
+    text-decoration: none;
+    padding: 8px 15px;
+    display: inline-block !important;
+}
+.pagination a.active{           impaginazione codice
+    background-color: lightgreen;
+    font-weight: bold !important;
+    border-radius: 5px !important;
+}
+.pagination a:hover:not(.active){
+    background-color:lightgray !important;
+    border-radius: 5px !important;
+}*/
+/**{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+}
+header{
+    background-color: lightgray;
+    text-align: center;
+    padding: 25px;
+}
+.navbar{
+    background-color: rgb(3, 1, 1);
+    height: 50px;
+}
+aside{
+    width: 20%;
+    float: left;
+    padding:10px;
+}
+section{
+    width: 40%;
+    float: left;
+    padding:10px;           LAYOUT SITO WEB
+}
+article{
+    width: 40%;
+    float: left;
+    padding:10px;
+}
+footer{
+    display: block;
+    clear: both;
+    background-color: lightgray;
+    text-align: center;
+    padding: 25px;
+}
+@media screen and(max-width:600px){
+    aside,section,article{
+        width: 100%;
+    }
+}*/
+/*.gallery{
+    display: inline-block;
+    border: 1px solid lightgray;
+    margin: 5px;
+    width: 250px;
+}
+.gallery .description{          GALLERIA DI IMMAGINI
+    padding: 10px;
+    text-align: center;
+}
+.gallery:hover{
+    border: 1px solid gray;
+}
+.gallery img{
+    width: 100%;
+    height: auto;
+}*/
+/*.icons{
+    text-align: center;
+}
+.icons a{
+    text-decoration: none;
+    margin-right: 20px;
+}
+.fa-solid.fa-house.fa-5x{
+    color: lightgray;
+}
+.fa-solid.fa-house.fa-5x:hover{      OMBREGGIATURA IMG
+    color: lightgray;
+}
+.fa-solid.fa-twitter.fa-5x{
+    color: cyan;
+}
+.fa-solid.fa-twitter.fa-5x:hover{
+    color: cyan;
+}
+.fa-solid.fa-youtube.fa-5x{
+    color: red;
+}
+.fa-solid.fa-youtube.fa-5x:hover{
+    color: rgb(238, 76, 76);
+}
+.fa-solid.fa-tiktok.fa-5x{
+    color: black;
+}
+.fa-solid.fa-tiktok.fa-5x:hover{
+    color: black;
+}*/
+/*.box{
+    width: 150px;
+    height: 150px;
+    font-size: 8em;
+    text-align: center;
+}
+#box1{
+    background-color: red;
+}
+#box2{
+    background-color: yellow;
+}
+#box3{
+    background-color: lightgreen;
+}
+#box4{
+    background-color: cyan;
+}*/
