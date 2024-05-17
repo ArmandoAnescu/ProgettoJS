@@ -1,12 +1,19 @@
-body
-{
+body {
     background-color: sienna;
     display: flex;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
     height: 100vh;
 }
-.Scacchiera
-{
-    
+
+.Scacchiera {
+    width: 85vw;
+    height: 85vw;
+    display: flex;
+    flex-wrap: wrap;/* faccio in modo che la mia schacchiera sia disposta in più linee sul mio contenitore*/
 }
+
+/*
+vw=viewport width, is a unit that refers to
+a percentage of the width of the view port of the screen
+*/
