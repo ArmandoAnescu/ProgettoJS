@@ -31,9 +31,19 @@ a percentage of the width of the view port of the screen
     background-color: rgba(0, 0, 0, 0.87);
     color: antiquewhite;
     font-family:'Times New Roman', Times, serif;
-    font-size: 15px;
+    font-size: 17px;
 }
 .bianco
 {
     background-color: antiquewhite;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 17px;
+}
+@media (min-width:600px) {
+    .Scacchiera
+    {
+        width: 800px;
+        height: 800px;
+    }
+    
 }
