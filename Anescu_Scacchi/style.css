@@ -6,14 +6,34 @@ body {
     height: 100vh;
 }
 
+
 .Scacchiera {
     width: 85vw;
     height: 85vw;
     display: flex;
     flex-wrap: wrap;/* faccio in modo che la mia schacchiera sia disposta in più linee sul mio contenitore*/
 }
-
 /*
 vw=viewport width, is a unit that refers to
 a percentage of the width of the view port of the screen
 */
+.spazio
+{
+    width: 12.5%;
+    height: 12.5%;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.nero
+{
+    background-color: rgba(0, 0, 0, 0.87);
+    color: antiquewhite;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 15px;
+}
+.bianco
+{
+    background-color: antiquewhite;
+}
