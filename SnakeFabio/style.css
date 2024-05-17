@@ -1,0 +1,55 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #E3F2FD;
+}
+/*vmin = unità di misura che rappresenta il valore più piccolo tra vw (viewport width) e vh (viewport height)*/
+.barraScore {
+  width: 65vmin;
+  height: 70vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  background: #293447;
+  box-shadow: 0 20px 40px rgba(52, 87, 220, 0.2);
+}
+.dettagliGioco{
+  color: #B8C6DC;
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding: 20px 27px;
+  display: flex;
+  justify-content: space-between;/*Inserisce lo spazio tra Score e High Score*/
+}
+.areaGioco {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  background: #212837;
+  grid-template: repeat(30, 1fr) / repeat(30, 1fr);/*Forma una griglia con 30 righe e 30 colonne, ogni riga / colonna occupa 1 frazione di spazio disponibile*/
+}
+.areaGioco .food {
+  background: #FF003D;
+}
+.areaGioco .head {
+  background: #60CBFF;
+}
+
+.controlli {
+  display: none;/*Evita che appaia in basso a sinistra la barra dei controlli*/
+}
+
+@media screen and (max-width: 800px) {/*Viene usato per impostare come larghezza massima dello schermo 800 px*/
+  /*Se lo schermo è inferiore agli 800 px verranno applicate questi metodi*/
+  .wrapper {
+    width: 90vmin;
+    height: 115vmin;
+  }
+  .dettagliGioco{
+    font-size: 1rem;
+    padding: 15px 27px;
+  }
+}

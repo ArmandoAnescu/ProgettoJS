@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;/*Serve per centrare il body lungo al direzione principale*/
+    align-items: center;/*Serve per centrare il body lungo la direzione perpendicolare*/
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+.targa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 100px;
+    border: 2px solid #000;
+    background-color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #000;
+}
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+}
