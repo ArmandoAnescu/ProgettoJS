@@ -120,4 +120,60 @@ document.addEventListener('DOMContentLoaded',() =>{
         checkWin()*/
     }
     document.addEventListener('keyup',movePacman);
+
+    //dopo aver mangiato un pac-dot
+    function dotEaten(){
+        if(squares[pacmanIndex].classList.contains('pac-dot')){
+            score++;
+            scoreDisplay.innerHTML = score;
+            squares[pacmanIndex].classList.remove('pac-dot');
+        }
+    }
+    
+    //dopo aver mangiato un power-pellet
+    function powerPelletEaten(){
+        if(squares[pacmanIndex].classList.contains('power-pellet')){
+            score +=10;
+            scoreDisplay.innerHTML= score;
+            squares[pacmanIndex].classList.contains('power-pellet');     
+        }
+    }
+
+    //creazione ghosts grazie ad un costruttora
+    class Ghost{
+        constructor(className, startIndex,speed){
+            this.className = className;
+            this.startIndex = startIndex;
+            this.speed = speed;
+            this.currentIndex = startIndex;
+            this.scared = false;
+            this.timer = NaN;
+        }
+    }
+    
+    //ghosts
+    ghosts = [
+        new Ghost('lampeg',348,250),
+        new Ghost('pinky',376,400),
+        new Ghost('ink',351,300),
+        new Ghost('clyde',379,500),
+    ];
+    
+    //creo i ghost nella mappa
+    ghosts.forEach(ghost => {
+        squares[ghost.currentIndex].classList.add(ghost.className);
+        squares[ghost.currentIndex].classList.add('ghost');
+    })
+
+    //movimento ghosts
+    ghosts.forEach(ghost => moveGhost(ghost));
+    function moveGhost(){
+        const directions = [-1,1,width,-width];
+        const direction = directions[Math.floor(Math.random()*directions.length)];
+        ghost.timer = setInterval(function(){
+            squares[ghost.currentIndex].classList.remove(ghost.className,'ghost');
+            ghost.currentIndex += direction;
+            squares[ghost.currentIndex].classList.add(ghost.className,'ghost');
+        },ghost.speed)
+    }
 })
