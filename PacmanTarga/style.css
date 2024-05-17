@@ -34,7 +34,8 @@
     background-color: orange;
 }
 .pac-man{
-    background-color: yellow;
+    background-color: orangered;
+    border-radius: 10px;
 }
 .ghost{
     background-color: aquamarine;
