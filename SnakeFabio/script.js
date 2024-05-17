@@ -42,6 +42,10 @@ const cambiaDirezione = e => {
     } else if(e.key === "ArrowRight" && velocitaX != -1) {
         velocitaX = 1;
         velocitaY = 0;
+    } else if(e.key === "Escape") {
+        velocitaX = 0;
+        velocitaY = 0;
+        alert("Hai messo il gioco in pausa");
     }
 }
 
