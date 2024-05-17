@@ -1,0 +1,41 @@
+.griglia{
+    width: 560px;
+    height: 560px;
+    border: solid black;
+    display: flex;
+    flex-wrap: wrap;
+}
+.griglia div{
+    width: 20px;
+    height: 20px;
+}
+.pac-dot{
+    background-color: green;
+    border: 5px solid white;
+    box-sizing: border-box;
+}
+.wall{
+    background-color: blue;
+}
+.power-pellet{
+    background-color: green;
+    border-radius: 10px;
+}
+.lampeg{
+    background-color: red;
+}
+.pinky{
+    background-color: magenta;
+}
+.ink{
+    background-color: cyan;
+}
+.clyde{
+    background-color: orange;
+}
+.pac-man{
+    background-color: yellow;
+}
+.ghost{
+    background-color: aquamarine;
+}
