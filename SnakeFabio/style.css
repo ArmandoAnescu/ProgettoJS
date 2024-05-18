@@ -7,7 +7,7 @@ body {
   }
   /*vmin = unità di misura che rappresenta il valore più piccolo tra vw (viewport width) e vh (viewport height)*/
   .barraScore {
-    width: 65vmin;
+    width: 70vmin;
     height: 80vmin;
     display: flex;
     flex-direction: column;
@@ -42,20 +42,4 @@ body {
   
   .controlli {
     display: none;/*Evita che appaia in basso a sinistra la barra dei controlli*/
-  }
-  
-  #button{
-    color: #B8C6DC;
-  }
-
-  @media screen and (max-width: 800px) {/*Viene usato per impostare come larghezza massima dello schermo 800 px*/
-    /*Se lo schermo è inferiore agli 800 px verranno applicate questi metodi*/
-    .wrapper {
-      width: 90vmin;
-      height: 115vmin;
-    }
-    .dettagliGioco{
-      font-size: 1rem;
-      padding: 15px 27px;
-    }
   }

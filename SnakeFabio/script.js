@@ -1,10 +1,13 @@
 const areaGioco = document.querySelector(".areaGioco");
 const scoreElement = document.querySelector(".score");
 const highScoreElement = document.querySelector(".high-score");
+const modalitàInvertita = document.querySelector(".high-score");
 const controlli = document.querySelectorAll(".controlli");
-//const comandiInvertiti = document.body.querySelectorAll("button");
+const span = document.querySelectorAll("span");
+const hoverEvent = function(){
+    alert("Quando mangi un frutto la direzione viene invertita");
+}
 
-let modalitàInversa = false;
 let gameOver = false;
 let foodX, foodY;
 let snakeX = 5, snakeY = 5;
@@ -16,8 +19,6 @@ let score = 0;
 // L'High-Score viene caricato dal local storage
 let highScore = localStorage.getItem("high-score");
 highScoreElement.innerText = `High Score: ${highScore}`;
-
-//comandiInvertiti.addEventListener("click", modalitàInversa = true);
 
 const aggiornaPosizioneCibo = () => {
     // Genera la posizione del cibo da 1 a 30
@@ -35,35 +36,15 @@ const GameOver = () => {
 const cambiaDirezione = e => {
     // Cambia la velocità in base al tasto precedentemente premuto (non è possibile cambiare direzione a 180°, esempio cliccare che vada in basso e successivamente in alto)
     if(e.key === "ArrowUp" && velocitaY != 1) {
-        if(modalitàInversa)
-        {
-            velocitaX = 0;
-            velocitaY = 1;
-        }
         velocitaX = 0;
         velocitaY = -1;//Per salire sull'asse Y il valore deve essere negativo
     } else if(e.key === "ArrowDown" && velocitaY != -1) {
-        if(modalitàInversa)
-        {
-            velocitaX = 0;
-            velocitaY = -1;
-        }
         velocitaX = 0;
         velocitaY = 1;
     } else if(e.key === "ArrowLeft" && velocitaX != 1) {
-        if(modalitàInversa)
-        {
-            velocitaX = 1;
-            velocitaY = 0;
-        }
         velocitaX = -1;//Per salire sull'asse X il valore deve essere negativo
         velocitaY = 0;
     } else if(e.key === "ArrowRight" && velocitaX != -1) {
-        if(modalitàInversa)
-        {
-            velocitaX = -1;
-            velocitaY = 0;
-        }
         velocitaX = 1;
         velocitaY = 0;
     } else if(e.key === "Escape") {
@@ -125,3 +106,4 @@ const iniziaPartita = () => {
 aggiornaPosizioneCibo();
 setIntervalId = setInterval(iniziaPartita, 90);//Intervallo tra un tick e l'altro di gioco
 document.addEventListener("keyup", cambiaDirezione);
+span[2].addEventListener("mouseover", hoverEvent);
