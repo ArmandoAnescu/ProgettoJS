@@ -24,7 +24,7 @@ function SpostamentoPezzi()
     {
         pezzi[i].addEventListener("dragstart",drag);
         pezzi[i].setAttribute("draggable",true);
-        pezzi[i].id=pezzi[i].className.split(" ")[1]+"_"+pezzi[i].parentElement.id;
+        pezzi[i].id=pezzi[i].className.split(" ")[1]+" "+pezzi[i].parentElement.id;
     }
     for(let i=0;i<Img.length;i++)
     {
@@ -69,17 +69,17 @@ function drag(ev)
 }
 function ControlloCattura(ev,pezzo)
 {
-    let pezzoDaMangiare=ev.getElementsByClassName("Pezzo");
+    let pezzoDaMangiare=ev.querySelector(".Pezzo");
     if(pezzoDaMangiare)
     {
         if(pezzoDaMangiare.classList.contains("Bianco")&& pezzo.classList.contains("Nero")){
             whiteCounter++;
-            ev.removeChild();
+            ev.removeChild(pezzoDaMangiare);
             return true;
-        }else if(pezzoDaMangiare.classList.contains("Nero") && pezzo.classList.console("Bianco"))
+        }else if(pezzoDaMangiare.classList.contains("Nero") && pezzo.classList.contains("Bianco"))
         {
             blackCounter++;
-            ev.removeChild(ev.firstChild);
+            ev.removeChild(pezzoDaMangiare);
             return true;
         }else
         {
