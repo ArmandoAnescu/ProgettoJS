@@ -2,7 +2,9 @@ const areaGioco = document.querySelector(".areaGioco");
 const scoreElement = document.querySelector(".score");
 const highScoreElement = document.querySelector(".high-score");
 const controlli = document.querySelectorAll(".controlli");
+//const comandiInvertiti = document.body.querySelectorAll("button");
 
+let modalitàInversa = false;
 let gameOver = false;
 let foodX, foodY;
 let snakeX = 5, snakeY = 5;
@@ -12,8 +14,10 @@ let setIntervalId;
 let score = 0;
 
 // L'High-Score viene caricato dal local storage
-let highScore = localStorage.getItem("high-score") || 0;
+let highScore = localStorage.getItem("high-score");
 highScoreElement.innerText = `High Score: ${highScore}`;
+
+//comandiInvertiti.addEventListener("click", modalitàInversa = true);
 
 const aggiornaPosizioneCibo = () => {
     // Genera la posizione del cibo da 1 a 30
@@ -31,15 +35,35 @@ const GameOver = () => {
 const cambiaDirezione = e => {
     // Cambia la velocità in base al tasto precedentemente premuto (non è possibile cambiare direzione a 180°, esempio cliccare che vada in basso e successivamente in alto)
     if(e.key === "ArrowUp" && velocitaY != 1) {
+        if(modalitàInversa)
+        {
+            velocitaX = 0;
+            velocitaY = 1;
+        }
         velocitaX = 0;
         velocitaY = -1;//Per salire sull'asse Y il valore deve essere negativo
     } else if(e.key === "ArrowDown" && velocitaY != -1) {
+        if(modalitàInversa)
+        {
+            velocitaX = 0;
+            velocitaY = -1;
+        }
         velocitaX = 0;
         velocitaY = 1;
     } else if(e.key === "ArrowLeft" && velocitaX != 1) {
+        if(modalitàInversa)
+        {
+            velocitaX = 1;
+            velocitaY = 0;
+        }
         velocitaX = -1;//Per salire sull'asse X il valore deve essere negativo
         velocitaY = 0;
     } else if(e.key === "ArrowRight" && velocitaX != -1) {
+        if(modalitàInversa)
+        {
+            velocitaX = -1;
+            velocitaY = 0;
+        }
         velocitaX = 1;
         velocitaY = 0;
     } else if(e.key === "Escape") {
@@ -52,16 +76,22 @@ const cambiaDirezione = e => {
 controlli.forEach(button => button.addEventListener("click", () => cambiaDirezione({ key: button.dataset.key })));
 
 const iniziaPartita = () => {
-    if(gameOver) return GameOver();
-    let html = `<div class="food" style="grid-area: ${foodY} / ${foodX}"></div>`;
-
+    if(gameOver) 
+    {
+        return GameOver();
+    }
+    let html = `<div class="head" style="grid-area: ${snakeY} / ${snakeX}"></div>`;
+    html = `<div class="food" style="grid-area: ${foodY} / ${foodX}"><img src = "Image/apple.png" width="25"></div>`
 
     if(snakeX === foodX && snakeY === foodY)// Controlla se lo snake ha interagito col cibo
     {
         aggiornaPosizioneCibo();
         corpoSnake.push([foodY, foodX]);// Il cibo diventa parte dell'array dello snake allungandolo
         score++;
-        highScore = score >= highScore ? score : highScore;
+        if (score > highScore)
+        {
+            highScore = score;
+        }
         localStorage.setItem("high-score", highScore);
         scoreElement.innerText = `Score: ${score}`;
         highScoreElement.innerText = `High Score: ${highScore}`;
@@ -93,5 +123,5 @@ const iniziaPartita = () => {
 }
 
 aggiornaPosizioneCibo();
-setIntervalId = setInterval(iniziaPartita, 100);
+setIntervalId = setInterval(iniziaPartita, 90);//Intervallo tra un tick e l'altro di gioco
 document.addEventListener("keyup", cambiaDirezione);
