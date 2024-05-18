@@ -1,24 +1,30 @@
+*{
+    background-color: black;
+    color: white;
+}
+
 .griglia{
     width: 560px;
     height: 560px;
     border: solid black;
     display: flex;
     flex-wrap: wrap;
+    background-color: black;
 }
 .griglia div{
     width: 20px;
     height: 20px;
 }
 .pac-dot{
-    background-color: green;
-    border: 5px solid white;
+    background-color: white;
+    border: 8px solid black;
     box-sizing: border-box;
 }
 .wall{
     background-color: blue;
 }
 .power-pellet{
-    background-color: green;
+    background-color: white;
     border-radius: 10px;
 }
 .lampeg{
@@ -34,7 +40,7 @@
     background-color: orange;
 }
 .pac-man{
-    background-color: orangered;
+    background-color: yellow;
     border-radius: 10px;
 }
 .scaredG{
