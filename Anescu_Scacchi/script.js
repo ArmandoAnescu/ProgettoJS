@@ -1,6 +1,7 @@
 const pezzi = document.getElementsByClassName("Pezzo");
 const Img = document.querySelectorAll("img");
 const caselle = document.getElementsByClassName("spazio");
+let turnoBianco=true;
 Spostamento();
 SpostamentoPezzi();
 function Spostamento()
@@ -29,6 +30,29 @@ function SpostamentoPezzi()
     }
     
 }
+function ControlloTurno(ev)
+{
+    let spostamento=true;
+    if(turnoBianco){
+        if(ev.classList.contains("Bianco")){
+            spostamento=true;
+            turnoBianco=false;
+        }else
+        {
+            spostamento=false;
+        }
+    }else
+    {
+        if(ev.classList.contains("Nero")){
+            spostamento=true;
+            turnoBianco=true;
+        }else
+        {
+            spostamento=false;
+        }
+    }
+    return spostamento;
+}
 function allowDrop(ev)
 {
     ev.preventDefault();
@@ -36,8 +60,10 @@ function allowDrop(ev)
 function drag(ev)
 {
   const pezzo=ev.target;
-  ev.dataTransfer.setData("text",pezzo.id);
-
+  if(ControlloTurno(pezzo))
+    {
+        ev.dataTransfer.setData("text",pezzo.id); 
+    }
 }
 function drop(ev)
 {

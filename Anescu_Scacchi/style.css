@@ -74,8 +74,8 @@ a percentage of the width of the view port of the screen
 @media (min-width:600px) {/*serve a contgrollare width e height di un dispositivo/schermo l'orinetamento e la risoluzione*/
     .Scacchiera
     {
-        width: 800px;
-        height: 800px;
+        width: 650px;
+        height: 650px;
     }
     
 }
