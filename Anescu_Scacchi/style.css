@@ -82,6 +82,9 @@ table
 }
 tr,td
 {
+    height: auto;
+    bottom: 4%;
+    left: 4%;
     border:  2px solid black;
     padding: 1px;
   background-color: whitesmoke;  
