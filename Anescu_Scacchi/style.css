@@ -69,6 +69,24 @@ a percentage of the width of the view port of the screen
     width: 100%;
     height: auto;
 }
+table
+{
+    height: auto;
+    bottom: 4%;
+    left: 4%;
+    position: absolute;
+}
+td{
+    background-color: gray;
+}
+tr
+{
+  background-color: whitesmoke;  
+}
+#Counter
+{
+    background-color: white;
+}
 
 
 @media (min-width:600px) {/*serve a contgrollare width e height di un dispositivo/schermo l'orinetamento e la risoluzione*/

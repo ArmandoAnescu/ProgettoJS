@@ -4,6 +4,7 @@ const caselle = document.getElementsByClassName("spazio");
 let turnoBianco=true;
 whiteCounter=0;
 blackCounter=0;
+let punteggio=document.body.querySelectorAll("#");
 Spostamento();
 SpostamentoPezzi();
 function Spostamento()
