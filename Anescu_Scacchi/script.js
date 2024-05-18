@@ -2,6 +2,8 @@ const pezzi = document.getElementsByClassName("Pezzo");
 const Img = document.querySelectorAll("img");
 const caselle = document.getElementsByClassName("spazio");
 let turnoBianco=true;
+whiteCounter=0;
+blackCounter=0;
 Spostamento();
 SpostamentoPezzi();
 function Spostamento()
@@ -22,7 +24,7 @@ function SpostamentoPezzi()
     {
         pezzi[i].addEventListener("dragstart",drag);
         pezzi[i].setAttribute("draggable",true);
-        pezzi[i].id=pezzi[i].className.split(" ")[1]+pezzi[i].parentElement.id;
+        pezzi[i].id=pezzi[i].className.split(" ")[1]+"_"+pezzi[i].parentElement.id;
     }
     for(let i=0;i<Img.length;i++)
     {
@@ -65,6 +67,29 @@ function drag(ev)
         ev.dataTransfer.setData("text",pezzo.id); 
     }
 }
+function ControlloCattura(ev,pezzo)
+{
+    let pezzoDaMangiare=ev.getElementsByClassName("Pezzo");
+    if(pezzoDaMangiare)
+    {
+        if(pezzoDaMangiare.classList.contains("Bianco")&& pezzo.classList.contains("Nero")){
+            whiteCounter++;
+            ev.removeChild();
+            return true;
+        }else if(pezzoDaMangiare.classList.contains("Nero") && pezzo.classList.console("Bianco"))
+        {
+            blackCounter++;
+            ev.removeChild(ev.firstChild);
+            return true;
+        }else
+        {
+            return false;
+        }
+    }else
+    {
+        return true;
+    }
+}
 function drop(ev)
 {
     ev.preventDefault();
@@ -72,7 +97,9 @@ function drop(ev)
     const pezzo=document.getElementById(data)
     const destinazione=ev.currentTarget;
     let destinazioneId=destinazione.id;
-    destinazione.appendChild(pezzo);
+    if(ControlloCattura(destinazione,pezzo)){
+        destinazione.appendChild(pezzo);
+    }
 }
 /*
 gli otto pedoni si muovono solo in avanti e mangiano in obliquo;
