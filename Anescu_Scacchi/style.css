@@ -71,16 +71,19 @@ a percentage of the width of the view port of the screen
 }
 table
 {
+    background-color: gray;
     height: auto;
     bottom: 4%;
     left: 4%;
     position: absolute;
+    border: solid black;
+    border-radius: 10px;
+    padding: 2px;
 }
-td{
-    background-color: gray;
-}
-tr
+tr,td
 {
+    border:  2px solid black;
+    padding: 1px;
   background-color: whitesmoke;  
 }
 #Counter
