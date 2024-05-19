@@ -1,23 +1,21 @@
 const areaGioco = document.querySelector(".areaGioco");
 const scoreElement = document.querySelector(".score");
 const highScoreElement = document.querySelector(".high-score");
-const modalitàInvertita = document.querySelector(".high-score");
 const controlli = document.querySelectorAll(".controlli");
-const span = document.querySelectorAll("span");
-const hoverEvent = function(){
-    alert("Quando mangi un frutto la direzione viene invertita");
-}
 
-let gameOver = false;
+let gameOver = false, paused = false;;
 let foodX, foodY;
 let snakeX = 5, snakeY = 5;
 let velocitaX = 0, velocitaY = 0;
 let corpoSnake = [];
 let setIntervalId;
 let score = 0;
+let ostacoli = [], ostacoloX, ostacoloY, nOstacoli = 0;
+let ostacoliAttivi = false;
+let html;
 
 // L'High-Score viene caricato dal local storage
-let highScore = localStorage.getItem("high-score");
+let highScore = localStorage.getItem("high-score") || 0;
 highScoreElement.innerText = `High Score: ${highScore}`;
 
 const aggiornaPosizioneCibo = () => {
@@ -26,14 +24,33 @@ const aggiornaPosizioneCibo = () => {
     foodY = Math.floor(Math.random() * 30) + 1;
 }
 
+const generaOstacoli = () => {
+    ostacoli = [];
+    for (let i = 0; i < nOstacoli; i++) { // Aggiungi gli ostacoli
+        ostacoloX = Math.floor(Math.random() * 30) + 1;
+        ostacoloY = Math.floor(Math.random() * 30) + 1;
+        ostacoli.push([ostacoloX, ostacoloY]);
+    }
+}
+
 const GameOver = () => {
     // Game Over = ricarica della pagina, cancellazione del punteggio
     clearInterval(setIntervalId);
-    alert("Game Over! Press OK to replay...");
+    alert("Game Over!");
     location.reload();
 }
 
 const cambiaDirezione = e => {
+    if (e.key === "Escape") {
+        togglePause();  // Chiama la funzione di pausa/ripresa
+        return;
+    }
+
+    if (paused) 
+    {
+        return;  // Ignora gli input quando il gioco è in pausa
+    }
+
     // Cambia la velocità in base al tasto precedentemente premuto (non è possibile cambiare direzione a 180°, esempio cliccare che vada in basso e successivamente in alto)
     if(e.key === "ArrowUp" && velocitaY != 1) {
         velocitaX = 0;
@@ -47,27 +64,37 @@ const cambiaDirezione = e => {
     } else if(e.key === "ArrowRight" && velocitaX != -1) {
         velocitaX = 1;
         velocitaY = 0;
-    } else if(e.key === "Escape") {
-        velocitaX = 0;
-        velocitaY = 0;
-        alert("Hai messo il gioco in pausa");
+    }
+}
+
+const togglePause = () => {
+    paused = !paused;// true = !true (false) - false = !false(true)
+
+    if (paused) {
+        clearInterval(setIntervalId);
+        alert("Hai messo il gioco in pausa (Premi Esc di nuovo per continuare il gioco)");
+    } else {
+        setIntervalId = setInterval(iniziaPartita, 80);
     }
 }
 
 controlli.forEach(button => button.addEventListener("click", () => cambiaDirezione({ key: button.dataset.key })));
 
 const iniziaPartita = () => {
+
     if(gameOver) 
     {
         return GameOver();
     }
-    let html = `<div class="head" style="grid-area: ${snakeY} / ${snakeX}"></div>`;
-    html = `<div class="food" style="grid-area: ${foodY} / ${foodX}"><img src = "Image/apple.png" width="25"></div>`
 
-    if(snakeX === foodX && snakeY === foodY)// Controlla se lo snake ha interagito col cibo
-    {
+    html = `<div class="head" style="grid-area: ${snakeY} / ${snakeX}"></div>`;
+    html = `<div class="food" style="grid-area: ${foodY} / ${foodX}"><img src="Image/apple.png" width="25"></div>`
+
+    if(snakeX === foodX && snakeY === foodY) {
         aggiornaPosizioneCibo();
-        corpoSnake.push([foodY, foodX]);// Il cibo diventa parte dell'array dello snake allungandolo
+        corpoSnake.push([foodY, foodX]);
+        ostacoli.push([foodY, foodX]);
+        nOstacoli++;
         score++;
         if (score > highScore)
         {
@@ -77,33 +104,52 @@ const iniziaPartita = () => {
         scoreElement.innerText = `Score: ${score}`;
         highScoreElement.innerText = `High Score: ${highScore}`;
     }
-    // Cambia la direzione in base alla velocità ottenuta in cambiaDirezione
+
     snakeX += velocitaX;
     snakeY += velocitaY;
-    
-    // Permette ai pezzi dello snake di rimanere attaccati
+
     for (let i = corpoSnake.length - 1; i > 0; i--) {
         corpoSnake[i] = corpoSnake[i - 1];
     }
     corpoSnake[0] = [snakeX, snakeY];
 
-    // Controlla che lo snake non vada a scontrarsi contro un muro
     if(snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30) {
         return gameOver = true;
     }
 
     for (let i = 0; i < corpoSnake.length; i++) {
-        // Aggiungo un div per ogni parte del copro dello snake per permettere di vederlo
         html += `<div class="head" style="grid-area: ${corpoSnake[i][1]} / ${corpoSnake[i][0]}"></div>`;
-        // Controlla che lo snake non si scontri con se stesso
         if (i !== 0 && corpoSnake[0][1] === corpoSnake[i][1] && corpoSnake[0][0] === corpoSnake[i][0]) {
             gameOver = true;
         }
     }
+
+    if (ostacoliAttivi) {
+        ostacoli.forEach(ostacolo => {
+            html += `<div class="ostacoli" style="grid-area: ${ostacolo[1]} / ${ostacolo[0]}"><img src="Image/ostacolo.png" width="25"></div>`;
+            if (snakeX === ostacolo[0] && snakeY === ostacolo[1]) {
+                gameOver = true;
+            }
+        });
+    }
+
     areaGioco.innerHTML = html;
 }
 
+const attivaOstacoli = () => {
+    ostacoliAttivi = !ostacoliAttivi;
+
+    if (ostacoliAttivi) {
+        alert("Hai attivato gli ostacoli");
+        generaOstacoli();
+    }
+    else
+    {
+        alert("Gli ostacoli sono stati disattivati");
+    }
+
+}
+
 aggiornaPosizioneCibo();
-setIntervalId = setInterval(iniziaPartita, 90);//Intervallo tra un tick e l'altro di gioco
+setIntervalId = setInterval(iniziaPartita, 80);
 document.addEventListener("keyup", cambiaDirezione);
-span[2].addEventListener("mouseover", hoverEvent);
