@@ -225,23 +225,23 @@ function MossaLegale(destinazioneId, pezzo) {
         colonna = colonna;
         mossePossibili = new Array();
         let nuovaRiga;
+        k=0;
         for (let i = 1; i <= 8 - riga; i++) {
-            mossePossibili[i-1] = colonna + (nuovaRiga = riga + i);
+            mossePossibili[k] = colonna + (nuovaRiga = riga + i);
+            k++;
         }
         for (let i = riga; i > 0; i--) {
-            mossePossibili[i-1] = colonna + (nuovaRiga = riga - i);
+            mossePossibili[k] = colonna + (nuovaRiga = riga - i);
+            k++;
         }
-        let k = mossePossibili.length - 1;
         for (let i = colonna.charCodeAt(0); i <= 194; i++) {
             mossePossibili[k] = String.fromCharCode(i) + riga;
             k++;
         }
-        k = mossePossibili.length - 1
         for (let i = colonna.charCodeAt(0); i >= 97; i--) {
             mossePossibili[k] = String.fromCharCode(i) + riga;
             k++
         }
-        
         let colonnaNuova = colonna;
         nuovaRiga = Number(riga);
         for (let i = 0; i < 8; i++) {
