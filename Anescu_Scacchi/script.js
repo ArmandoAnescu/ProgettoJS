@@ -8,6 +8,8 @@ let showTurno=document.getElementById("turno")
 let punteggio = document.body.querySelectorAll("#Counter");
 Spostamento();
 SpostamentoPezzi();
+AggiornaPunteggio();
+
 function AggiornaPunteggio()
 {
     for (let i = 0; i < punteggio.length; i++) {
@@ -101,7 +103,6 @@ function drop(ev) {
         destinazione.appendChild(pezzo);
     }
     AggiornaPunteggio();
-    
 }
 function MossaLegale(destinazioneId,pezzo)
 {
@@ -126,8 +127,24 @@ function MossaLegale(destinazioneId,pezzo)
             return false;
         }
     }else if(pezzo.classList.contains("King")){
-        for(let i=0;i<8;i++){
-            
+        let possibiliMosse=newArray;
+        let colonna=origine.charAt(0);
+        let riga=origine.charAt(1);
+        possibiliMosse[0]=colonna+(riga+1);
+        possibiliMosse[1]=colonna+(riga-1);
+        possibiliMosse[2]=(colonna-1)+riga;
+        possibiliMosse[3]=(colonna+1)+riga;
+        possibiliMosse[5]=(colonna+1)+(riga+1);
+        possibiliMosse[6]=(colonna-1)+(riga+1);
+        possibiliMosse[7]=(colonna-1)+(riga-1);
+        possibiliMosse[8]=(colonna+1)+(riga-1)
+        for(let i=0;i<possibiliMosse.length;i++){
+            if(destinazioneId==possibiliMosse[i]){
+                return true;
+            }else
+            {
+                return false;
+            }
         }
     }else
     {
