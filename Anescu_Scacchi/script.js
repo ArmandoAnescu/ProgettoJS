@@ -107,10 +107,12 @@ function drop(ev) {
 function MossaLegale(destinazioneId,pezzo)
 {
     let origine=pezzo.parentElement.id;
+    let colonna=origine.charAt(0);
+    let riga=origine.charAt(1);
     if(pezzo.classList.contains("Pawn")){
-       
         let colonna=origine.charAt(0);
         let riga=origine.charAt(1);
+       
         if(pezzo.classList.contains("Bianco")){
             riga++;
 
@@ -127,17 +129,17 @@ function MossaLegale(destinazioneId,pezzo)
             return false;
         }
     }else if(pezzo.classList.contains("King")){
-        let possibiliMosse=newArray;
-        let colonna=origine.charAt(0);
-        let riga=origine.charAt(1);
-        possibiliMosse[0]=colonna+(riga+1);
-        possibiliMosse[1]=colonna+(riga-1);
-        possibiliMosse[2]=(colonna-1)+riga;
-        possibiliMosse[3]=(colonna+1)+riga;
-        possibiliMosse[5]=(colonna+1)+(riga+1);
-        possibiliMosse[6]=(colonna-1)+(riga+1);
-        possibiliMosse[7]=(colonna-1)+(riga-1);
-        possibiliMosse[8]=(colonna+1)+(riga-1)
+        possibiliMosse=new Array();
+        colonna=colonna.charCodeAt(0);
+        riga=Number(riga);
+        possibiliMosse[0]=String.fromCharCode(colonna)+(nuovaRiga=riga+1);
+        possibiliMosse[1]=String.fromCharCode(colonna)+(nuovaRiga=riga-1);
+        possibiliMosse[2]=String.fromCharCode((colonna.charAt(0)-1))+riga;
+        possibiliMosse[3]=String.fromCharCode(colonna(colonna.charAt(0)+1))+riga;
+        possibiliMosse[5]=String.fromCharCode(colonna(colonna.charAt(0)+1))+(nuovaRiga=riga+1);
+        possibiliMosse[6]=String.fromCharCode(colonna(colonna.charAt(0)-1))+(nuovaRiga=riga+1);
+        possibiliMosse[7]=String.fromCharCode(colonna(colonna.charAt(0)-1))+(nuovaRiga=riga-1);
+        possibiliMosse[8]=String.fromCharCode(colonna(colonna.charAt(0)+1))+(nuovaRiga=riga-1);
         for(let i=0;i<possibiliMosse.length;i++){
             if(destinazioneId==possibiliMosse[i]){
                 return true;
@@ -146,6 +148,29 @@ function MossaLegale(destinazioneId,pezzo)
                 return false;
             }
         }
+    }else if(pezzo.classList.contains("Knight")){
+        possibiliMosse=new Array();
+        let colonna=origine.charAt(0);
+        let riga=origine.charCodeAt(1);
+        let nuovaRiga;
+        possibiliMosse[0]=String.fromCharCode((colonna.charAt(0)-2))+(nuovaRiga=riga+1);
+        possibiliMosse[1]=String.fromCharCode((colonna.charAt(0)-2))+(nuovaRiga=riga-1);
+        possibiliMosse[2]=String.fromCharCode((colonna.charAt(0)+2))+(nuovaRiga=riga+1);
+        possibiliMosse[3]=String.fromCharCode((colonna.charAt(0)+2))+(nuovaRiga=riga-1);
+        possibiliMosse[4]=String.fromCharCode((colonna.charAt(0)-1))+(nuovaRiga=riga+2);
+        possibiliMosse[5]=String.fromCharCode((colonna.charAt(0)+1))+(nuovaRiga=riga-2);
+        possibiliMosse[6]=String.fromCharCode((colonna.charAt(0)-1))+(nuovaRiga=riga-2);
+        possibiliMosse[7]=String.fromCharCode((colonna.charAt(0)+1))+(nuovaRiga=riga+2);
+        console.log(possibiliMosse);
+        for(let i=0;i<possibiliMosse.length;i++){
+            if(destinazioneId==possibiliMosse[i]){
+                return true;
+            }else
+            {
+                return false;
+            }
+        }
+       
     }else
     {
         return true;
