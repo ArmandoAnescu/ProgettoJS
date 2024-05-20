@@ -221,7 +221,58 @@ function MossaLegale(destinazioneId, pezzo) {
         }
         return false;
     }else if(pezzo.classList.contains("Queen")){
+        riga = Number(riga);
+        colonna = colonna;
+        mossePossibili = new Array();
+        let nuovaRiga;
+        for (let i = 1; i <= 8 - riga; i++) {
+            mossePossibili[i-1] = colonna + (nuovaRiga = riga + i);
+        }
+        for (let i = riga; i > 0; i--) {
+            mossePossibili[i-1] = colonna + (nuovaRiga = riga - i);
+        }
+        let k = mossePossibili.length - 1;
+        for (let i = colonna.charCodeAt(0); i <= 194; i++) {
+            mossePossibili[k] = String.fromCharCode(i) + riga;
+            k++;
+        }
+        k = mossePossibili.length - 1
+        for (let i = colonna.charCodeAt(0); i >= 97; i--) {
+            mossePossibili[k] = String.fromCharCode(i) + riga;
+            k++
+        }
         
+        let colonnaNuova = colonna;
+        nuovaRiga = Number(riga);
+        for (let i = 0; i < 8; i++) {
+            mossePossibili[k] = String.fromCharCode(colonnaNuova.charCodeAt(0)+(1+i)) + (nuovaRiga+(1+i));
+            k++;
+        }
+        colonnaNuova = colonna;
+        nuovaRiga = Number(riga);
+        for (let i = 0; i < 8; i++) {
+            mossePossibili[k] = String.fromCharCode(colonnaNuova.charCodeAt(0)+(-1-i)) + (nuovaRiga+(-1-i));
+            k++;
+        }
+        colonnaNuova = colonna;
+        nuovaRiga = Number(riga);
+        for (let i = 0; i < 8; i++) {
+            mossePossibili[k] = String.fromCharCode(colonnaNuova.charCodeAt(0)+(i+i)) + (nuovaRiga+(-1-1));
+            k++;
+        }
+        colonnaNuova = colonna;
+        nuovaRiga = Number(riga);
+        for (let i = 0; i < 8; i++) {
+            mossePossibili[k] = String.fromCharCode(colonnaNuova.charCodeAt(0)+(-1-i)) + (nuovaRiga+(1+i));
+            k++;
+        }
+        console.log(mossePossibili);
+        for (let i = 0; i < mossePossibili.length; i++) {
+            if (mossePossibili[i] == destinazioneId) {
+                return true;
+            }
+        }
+        return false;
     }
     else {
         return true;
