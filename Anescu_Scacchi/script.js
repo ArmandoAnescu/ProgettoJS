@@ -132,7 +132,7 @@ function MossaLegale(destinazioneId,pezzo)
         possibiliMosse=new Array();
         colonna=colonna;
         riga=Number(riga);
-        let nuovaRiga
+        let nuovaRiga;
         possibiliMosse[0]=colonna+(nuovaRiga=riga+1);
         possibiliMosse[1]=colonna+(nuovaRiga=riga-1);
         possibiliMosse[2]=String.fromCharCode((colonna.charCodeAt(0)-1))+riga;
@@ -142,7 +142,6 @@ function MossaLegale(destinazioneId,pezzo)
         possibiliMosse[6]=String.fromCharCode((colonna.charCodeAt(0)-1))+(nuovaRiga=riga-1);
         possibiliMosse[7]=String.fromCharCode((colonna.charCodeAt(0)+1))+(nuovaRiga=riga-1);
         for(let i=0;i<possibiliMosse.length;i++){
-            console.log(possibiliMosse);
             if(possibiliMosse[i]==destinazioneId){
                 return true;
             }
@@ -150,7 +149,7 @@ function MossaLegale(destinazioneId,pezzo)
         return false;
     }else if(pezzo.classList.contains("Knight")){
         possibiliMosse=new Array();
-        colonna=origine;
+        colonna=colonna;
         riga=Number(riga);
         let nuovaRiga=riga+1;
         possibiliMosse[0]=String.fromCharCode((colonna.charCodeAt(0)-2))+nuovaRiga;
@@ -164,12 +163,37 @@ function MossaLegale(destinazioneId,pezzo)
         nuovaRiga=riga-2;
         possibiliMosse[5]=String.fromCharCode((colonna.charCodeAt(0)+1))+nuovaRiga;
         possibiliMosse[6]=String.fromCharCode((colonna.charCodeAt(0)-1))+nuovaRiga;
-        console.log(possibiliMosse);
-        console.log(destinazioneId);
+       
         for(let i=0;i<possibiliMosse.length;i++){
-            console.log(i);
             if(possibiliMosse[i]==destinazioneId){
                 return true;
+            }
+        }
+        return false;
+    }else if(pezzo.classList.contains("Rook")){
+        riga=Number(riga);
+        colonna=colonna;
+        mossePossibili=new Array();
+        let nuovaRiga;
+        for(let i=1;i<=8-riga;i++){
+            mossePossibili[i]=colonna+(nuovaRiga=riga+i);
+        }
+        for(let i=riga;i>0;i--){
+            mossePossibili[i]=colonna+(nuovaRiga=riga-i);
+        }
+        let k=mossePossibili.length-1;
+        for(let i=colonna.charCodeAt(0);i<=194;i++){
+            mossePossibili[k]=String.fromCharCode(i)+riga;
+            k++;
+        }
+        k=mossePossibili.length-1
+        for(let i=colonna.charCodeAt(0);i>=97;i--){
+            mossePossibili[k]=String.fromCharCode(i)+riga;
+            k++
+        }
+        for(let i=0;i<mossePossibili.length;i++){
+            if(destinazioneId==mossePossibili[i]){
+                return true
             }
         }
         return false;
