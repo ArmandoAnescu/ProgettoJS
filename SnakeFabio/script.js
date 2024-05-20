@@ -3,7 +3,7 @@ const scoreElement = document.querySelector(".score");
 const highScoreElement = document.querySelector(".high-score");
 const controlli = document.querySelectorAll(".controlli");
 
-let gameOver = false, paused = false;;
+let gameOver = false, paused = false, partitaIniziata = false;
 let foodX, foodY;
 let snakeX = 5, snakeY = 5;
 let velocitaX = 0, velocitaY = 0;
@@ -11,7 +11,7 @@ let corpoSnake = [];
 let setIntervalId;
 let score = 0;
 let ostacoli = [], ostacoloX, ostacoloY, nOstacoli = 0;
-let ostacoliAttivi = false;
+let ostacoliAttivi = false, btn1;
 let html;
 
 // L'High-Score viene caricato dal local storage
@@ -91,6 +91,7 @@ const iniziaPartita = () => {
     html = `<div class="food" style="grid-area: ${foodY} / ${foodX}"><img src="Image/apple.png" width="25"></div>`
 
     if(snakeX === foodX && snakeY === foodY) {
+        partitaIniziata = true;
         aggiornaPosizioneCibo();
         corpoSnake.push([foodY, foodX]);
         ostacoli.push([foodY, foodX]);
@@ -137,17 +138,21 @@ const iniziaPartita = () => {
 }
 
 const attivaOstacoli = () => {
-    ostacoliAttivi = !ostacoliAttivi;
 
-    if (ostacoliAttivi) {
-        alert("Hai attivato gli ostacoli");
-        generaOstacoli();
-    }
-    else
+    if(!partitaIniziata)
     {
-        alert("Gli ostacoli sono stati disattivati");
+        ostacoliAttivi = !ostacoliAttivi;
+        btn1 = document.getElementById("btn1");
+    
+        if (ostacoliAttivi) {
+            btn1.textContent = "Ostacoli: ON";
+            generaOstacoli();
+        }
+        else
+        {
+            btn1.textContent = "Ostacoli: OFF";
+        }
     }
-
 }
 
 aggiornaPosizioneCibo();
