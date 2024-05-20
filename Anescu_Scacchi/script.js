@@ -4,26 +4,24 @@ const caselle = document.getElementsByClassName("spazio");
 let turnoBianco = true;
 whiteCounter = 0;
 blackCounter = 0;
-let showTurno=document.getElementById("turno")
+let showTurno = document.getElementById("turno")
 let punteggio = document.body.querySelectorAll("#Counter");
 Spostamento();
 SpostamentoPezzi();
 AggiornaPunteggio();
 
-function AggiornaPunteggio()
-{
+function AggiornaPunteggio() {
     for (let i = 0; i < punteggio.length; i++) {
         if (i == 0) {
-            punteggio[i].textContent=whiteCounter;
-        }else
-        {
-            punteggio[i].textContent=blackCounter;
+            punteggio[i].textContent = whiteCounter;
+        } else {
+            punteggio[i].textContent = blackCounter;
         }
     }
-    if(turnoBianco){
-        showTurno.textContent="bianco";
-    }else{
-        showTurno.textContent="nero";
+    if (turnoBianco) {
+        showTurno.textContent = "bianco";
+    } else {
+        showTurno.textContent = "nero";
     }
 }
 function Spostamento() {
@@ -33,7 +31,7 @@ function Spostamento() {
         let riga = 8 - Math.floor(i / 8);
         let colonna = String.fromCharCode(97 + (i % 8));
         let casella = caselle[i];
-        casella.id = colonna+riga;
+        casella.id = colonna + riga;
         console.log(casella.id);
     }
 }
@@ -52,14 +50,12 @@ function ControlloTurno(ev) {
     if (turnoBianco) {
         if (ev.classList.contains("Bianco")) {
             spostamento = true;
-            turnoBianco = false;
         } else {
             spostamento = false;
         }
     } else {
         if (ev.classList.contains("Nero")) {
             spostamento = true;
-            turnoBianco = true;
         } else {
             spostamento = false;
         }
@@ -99,106 +95,131 @@ function drop(ev) {
     const pezzo = document.getElementById(data)
     const destinazione = ev.currentTarget;
     let destinazioneId = destinazione.id;
-    if (ControlloCattura(destinazione, pezzo) && MossaLegale(destinazioneId,pezzo)) {
+    if (ControlloCattura(destinazione, pezzo) && MossaLegale(destinazioneId, pezzo)) {
         destinazione.appendChild(pezzo);
     }
+    turnoBianco = !turnoBianco;
     AggiornaPunteggio();
 }
-function MossaLegale(destinazioneId,pezzo)
-{
-    let origine=pezzo.parentElement.id;
-    let colonna=origine.charAt(0);
-    let riga=origine.charAt(1);
-    if(pezzo.classList.contains("Pawn")){
-        let colonna=origine.charAt(0);
-        let riga=origine.charAt(1);
-       
-        if(pezzo.classList.contains("Bianco")){
+function MossaLegale(destinazioneId, pezzo) {
+    let origine = pezzo.parentElement.id;
+    let colonna = origine.charAt(0);
+    let riga = origine.charAt(1);
+    if (pezzo.classList.contains("Pawn")) {
+        let colonna = origine.charAt(0);
+        let riga = origine.charAt(1);
+        if (pezzo.classList.contains("Bianco")) {
             riga++;
 
-        }else
-        {
+        } else {
             riga--;
         }
-        let posizione=colonna+riga;
+        let posizione = colonna + riga;
         console.log(posizione);
-        if(destinazioneId==posizione){
+        if (destinazioneId == posizione) {
             return true;
-        }else
-        {
+        } else {
             return false;
         }
-    }else if(pezzo.classList.contains("King")){
-        possibiliMosse=new Array();
-        colonna=colonna;
-        riga=Number(riga);
+    } else if (pezzo.classList.contains("King")) {
+        possibiliMosse = new Array();
+        colonna = colonna;
+        riga = Number(riga);
         let nuovaRiga;
-        possibiliMosse[0]=colonna+(nuovaRiga=riga+1);
-        possibiliMosse[1]=colonna+(nuovaRiga=riga-1);
-        possibiliMosse[2]=String.fromCharCode((colonna.charCodeAt(0)-1))+riga;
-        possibiliMosse[3]=String.fromCharCode((colonna.charCodeAt(0)+1))+riga;
-        possibiliMosse[4]=String.fromCharCode((colonna.charCodeAt(0)+1))+(nuovaRiga=riga+1);
-        possibiliMosse[5]=String.fromCharCode((colonna.charCodeAt(0)-1))+(nuovaRiga=riga+1);
-        possibiliMosse[6]=String.fromCharCode((colonna.charCodeAt(0)-1))+(nuovaRiga=riga-1);
-        possibiliMosse[7]=String.fromCharCode((colonna.charCodeAt(0)+1))+(nuovaRiga=riga-1);
-        for(let i=0;i<possibiliMosse.length;i++){
-            if(possibiliMosse[i]==destinazioneId){
+        possibiliMosse[0] = colonna + (nuovaRiga = riga + 1);
+        possibiliMosse[1] = colonna + (nuovaRiga = riga - 1);
+        possibiliMosse[2] = String.fromCharCode((colonna.charCodeAt(0) - 1)) + riga;
+        possibiliMosse[3] = String.fromCharCode((colonna.charCodeAt(0) + 1)) + riga;
+        possibiliMosse[4] = String.fromCharCode((colonna.charCodeAt(0) + 1)) + (nuovaRiga = riga + 1);
+        possibiliMosse[5] = String.fromCharCode((colonna.charCodeAt(0) - 1)) + (nuovaRiga = riga + 1);
+        possibiliMosse[6] = String.fromCharCode((colonna.charCodeAt(0) - 1)) + (nuovaRiga = riga - 1);
+        possibiliMosse[7] = String.fromCharCode((colonna.charCodeAt(0) + 1)) + (nuovaRiga = riga - 1);
+        for (let i = 0; i < possibiliMosse.length; i++) {
+            if (possibiliMosse[i] == destinazioneId) {
                 return true;
             }
         }
         return false;
-    }else if(pezzo.classList.contains("Knight")){
-        possibiliMosse=new Array();
-        colonna=colonna;
-        riga=Number(riga);
-        let nuovaRiga=riga+1;
-        possibiliMosse[0]=String.fromCharCode((colonna.charCodeAt(0)-2))+nuovaRiga;
-        possibiliMosse[2]=String.fromCharCode((colonna.charCodeAt(0)+2))+nuovaRiga;
-        nuovaRiga=riga-1;
-        possibiliMosse[1]=String.fromCharCode((colonna.charCodeAt(0)-2))+nuovaRiga;
-        possibiliMosse[3]=String.fromCharCode((colonna.charCodeAt(0)+2))+nuovaRiga;
-        nuovaRiga=riga+2
-        possibiliMosse[4]=String.fromCharCode((colonna.charCodeAt(0)-1))+nuovaRiga;
-        possibiliMosse[7]=String.fromCharCode((colonna.charCodeAt(0)+1))+nuovaRiga;
-        nuovaRiga=riga-2;
-        possibiliMosse[5]=String.fromCharCode((colonna.charCodeAt(0)+1))+nuovaRiga;
-        possibiliMosse[6]=String.fromCharCode((colonna.charCodeAt(0)-1))+nuovaRiga;
-       
-        for(let i=0;i<possibiliMosse.length;i++){
-            if(possibiliMosse[i]==destinazioneId){
+    } else if (pezzo.classList.contains("Knight")) {
+        possibiliMosse = new Array();
+        colonna = colonna;
+        riga = Number(riga);
+        let nuovaRiga = riga + 1;
+        possibiliMosse[0] = String.fromCharCode((colonna.charCodeAt(0) - 2)) + nuovaRiga;
+        possibiliMosse[2] = String.fromCharCode((colonna.charCodeAt(0) + 2)) + nuovaRiga;
+        nuovaRiga = riga - 1;
+        possibiliMosse[1] = String.fromCharCode((colonna.charCodeAt(0) - 2)) + nuovaRiga;
+        possibiliMosse[3] = String.fromCharCode((colonna.charCodeAt(0) + 2)) + nuovaRiga;
+        nuovaRiga = riga + 2
+        possibiliMosse[4] = String.fromCharCode((colonna.charCodeAt(0) - 1)) + nuovaRiga;
+        possibiliMosse[7] = String.fromCharCode((colonna.charCodeAt(0) + 1)) + nuovaRiga;
+        nuovaRiga = riga - 2;
+        possibiliMosse[5] = String.fromCharCode((colonna.charCodeAt(0) + 1)) + nuovaRiga;
+        possibiliMosse[6] = String.fromCharCode((colonna.charCodeAt(0) - 1)) + nuovaRiga;
+
+        for (let i = 0; i < possibiliMosse.length; i++) {
+            if (possibiliMosse[i] == destinazioneId) {
                 return true;
             }
         }
         return false;
-    }else if(pezzo.classList.contains("Rook")){
-        riga=Number(riga);
-        colonna=colonna;
-        mossePossibili=new Array();
+    } else if (pezzo.classList.contains("Rook")) {
+        riga = Number(riga);
+        colonna = colonna;
+        mossePossibili = new Array();
         let nuovaRiga;
-        for(let i=1;i<=8-riga;i++){
-            mossePossibili[i]=colonna+(nuovaRiga=riga+i);
+        for (let i = 1; i <= 8 - riga; i++) {
+            mossePossibili[i] = colonna + (nuovaRiga = riga + i);
         }
-        for(let i=riga;i>0;i--){
-            mossePossibili[i]=colonna+(nuovaRiga=riga-i);
+        for (let i = riga; i > 0; i--) {
+            mossePossibili[i] = colonna + (nuovaRiga = riga - i);
         }
-        let k=mossePossibili.length-1;
-        for(let i=colonna.charCodeAt(0);i<=194;i++){
-            mossePossibili[k]=String.fromCharCode(i)+riga;
+        let k = mossePossibili.length - 1;
+        for (let i = colonna.charCodeAt(0); i <= 194; i++) {
+            mossePossibili[k] = String.fromCharCode(i) + riga;
             k++;
         }
-        k=mossePossibili.length-1
-        for(let i=colonna.charCodeAt(0);i>=97;i--){
-            mossePossibili[k]=String.fromCharCode(i)+riga;
+        k = mossePossibili.length - 1
+        for (let i = colonna.charCodeAt(0); i >= 97; i--) {
+            mossePossibili[k] = String.fromCharCode(i) + riga;
             k++
         }
-        for(let i=0;i<mossePossibili.length;i++){
-            if(destinazioneId==mossePossibili[i]){
+        for (let i = 0; i < mossePossibili.length; i++) {
+            if (destinazioneId == mossePossibili[i]) {
                 return true
             }
         }
         return false;
-    }else
-    {
+    } else if (pezzo.classList.contains("Bishop")) {
+        mossePossibili = new Array();
+        colonnNuova = colonna;
+        nuovaRiga = Number(riga);
+
+        for (let i = 0; i < 8; i++) {
+
+            mossePossibili[i] = String.fromCharCode(colonnNuova.charCodeAt(0)++) + (nuovaRiga++);
+        }
+        for (let i = 8; i < 16; i++) {
+            mossePossibili[i] = String.fromCharCode(((colonne[1]).charCodeAt(1)--)) + ((righe[1])--);
+
+        }
+        for (let i = 16; i < 24; i++) {
+            mossePossibili[i] = String.fromCharCode(((colonne[2]).charCodeAt(0)++)) + ((righe[2])--);
+
+        }
+        for (let i = 24; i < 32; i++) {
+            mossePossibili[i] = String.fromCharCode(((colonne[3]).charCodeAt(0)--)) + ((righe[3])++);
+
+        }
+        console.log(mossePossibili);
+        for (let i = 0; i < mossePossibili.length; i++) {
+            if (mossePossibili[i] == destinazioneId) {
+                return true;
+            }
+        }
+        return false;
+    }
+    else {
         return true;
     }
 }
