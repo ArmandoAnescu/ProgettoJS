@@ -88,10 +88,18 @@ function ControlloCattura(ev, pezzo) {
     let pezzoDaMangiare = ev.querySelector(".Pezzo");
     if (pezzoDaMangiare) {
         if (pezzoDaMangiare.classList.contains("Bianco") && pezzo.classList.contains("Nero")) {
+            if(pezzoDaMangiare.classList.contains("King")){
+                window.alert("Scacco matto");
+                location.reload();//ricarica la pagina
+            }
             blackCounter++;
             ev.removeChild(pezzoDaMangiare);
             return true;
         } else if (pezzoDaMangiare.classList.contains("Nero") && pezzo.classList.contains("Bianco")) {
+            if(pezzoDaMangiare.classList.contains("King")){
+                window.alert("Scacco matto");
+                location.reload();//ricarica la pagina
+            }
             whiteCounter++;
             ev.removeChild(pezzoDaMangiare);
             return true;
