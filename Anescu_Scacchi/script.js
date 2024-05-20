@@ -71,6 +71,19 @@ function drag(ev) {
         ev.dataTransfer.setData("text", pezzo.id);
     }
 }
+
+function drop(ev) {
+    ev.preventDefault();
+    let data = ev.dataTransfer.getData("text");
+    const pezzo = document.getElementById(data)
+    const destinazione = ev.currentTarget;
+    let destinazioneId = destinazione.id;
+    if (ControlloCattura(destinazione, pezzo) && MossaLegale(destinazioneId, pezzo)) {
+        destinazione.appendChild(pezzo);
+    }
+    turnoBianco = !turnoBianco;
+    AggiornaPunteggio();
+}
 function ControlloCattura(ev, pezzo) {
     let pezzoDaMangiare = ev.querySelector(".Pezzo");
     if (pezzoDaMangiare) {
@@ -88,18 +101,6 @@ function ControlloCattura(ev, pezzo) {
     } else {
         return true;
     }
-}
-function drop(ev) {
-    ev.preventDefault();
-    let data = ev.dataTransfer.getData("text");
-    const pezzo = document.getElementById(data)
-    const destinazione = ev.currentTarget;
-    let destinazioneId = destinazione.id;
-    if (ControlloCattura(destinazione, pezzo) && MossaLegale(destinazioneId, pezzo)) {
-        destinazione.appendChild(pezzo);
-    }
-    turnoBianco = !turnoBianco;
-    AggiornaPunteggio();
 }
 function MossaLegale(destinazioneId, pezzo) {
     let origine = pezzo.parentElement.id;
@@ -192,24 +193,25 @@ function MossaLegale(destinazioneId, pezzo) {
         return false;
     } else if (pezzo.classList.contains("Bishop")) {
         mossePossibili = new Array();
-        colonnNuova = colonna;
-        nuovaRiga = Number(riga);
-
+        let colonnaNuova = colonna;
+        let nuovaRiga = Number(riga);
         for (let i = 0; i < 8; i++) {
-
-            mossePossibili[i] = String.fromCharCode(colonnNuova.charCodeAt(0)++) + (nuovaRiga++);
+            mossePossibili[i] = String.fromCharCode(colonnaNuova.charCodeAt(0)+(1+i)) + (nuovaRiga+(1+i));
         }
-        for (let i = 8; i < 16; i++) {
-            mossePossibili[i] = String.fromCharCode(((colonne[1]).charCodeAt(1)--)) + ((righe[1])--);
-
+        colonnaNuova = colonna;
+        nuovaRiga = Number(riga);
+        for (let i = 0; i < 8; i++) {
+            mossePossibili[i+8] = String.fromCharCode(colonnaNuova.charCodeAt(0)+(-1-i)) + (nuovaRiga+(-1-i));
         }
-        for (let i = 16; i < 24; i++) {
-            mossePossibili[i] = String.fromCharCode(((colonne[2]).charCodeAt(0)++)) + ((righe[2])--);
-
+        colonnaNuova = colonna;
+        nuovaRiga = Number(riga);
+        for (let i = 0; i < 8; i++) {
+            mossePossibili[i+16] = String.fromCharCode(colonnaNuova.charCodeAt(0)+(i+i)) + (nuovaRiga+(-1-1));
         }
-        for (let i = 24; i < 32; i++) {
-            mossePossibili[i] = String.fromCharCode(((colonne[3]).charCodeAt(0)--)) + ((righe[3])++);
-
+        colonnaNuova = colonna;
+        nuovaRiga = Number(riga);
+        for (let i = 0; i < 8; i++) {
+            mossePossibili[i+24] = String.fromCharCode(colonnaNuova.charCodeAt(0)+(-1-i)) + (nuovaRiga+(1+i));
         }
         console.log(mossePossibili);
         for (let i = 0; i < mossePossibili.length; i++) {
@@ -218,6 +220,8 @@ function MossaLegale(destinazioneId, pezzo) {
             }
         }
         return false;
+    }else if(pezzo.classList.contains("Queen")){
+        
     }
     else {
         return true;
