@@ -130,47 +130,49 @@ function MossaLegale(destinazioneId,pezzo)
         }
     }else if(pezzo.classList.contains("King")){
         possibiliMosse=new Array();
-        colonna=colonna.charCodeAt(0);
+        colonna=colonna;
         riga=Number(riga);
-        possibiliMosse[0]=String.fromCharCode(colonna)+(nuovaRiga=riga+1);
-        possibiliMosse[1]=String.fromCharCode(colonna)+(nuovaRiga=riga-1);
-        possibiliMosse[2]=String.fromCharCode((colonna.charAt(0)-1))+riga;
-        possibiliMosse[3]=String.fromCharCode(colonna(colonna.charAt(0)+1))+riga;
-        possibiliMosse[5]=String.fromCharCode(colonna(colonna.charAt(0)+1))+(nuovaRiga=riga+1);
-        possibiliMosse[6]=String.fromCharCode(colonna(colonna.charAt(0)-1))+(nuovaRiga=riga+1);
-        possibiliMosse[7]=String.fromCharCode(colonna(colonna.charAt(0)-1))+(nuovaRiga=riga-1);
-        possibiliMosse[8]=String.fromCharCode(colonna(colonna.charAt(0)+1))+(nuovaRiga=riga-1);
+        let nuovaRiga
+        possibiliMosse[0]=colonna+(nuovaRiga=riga+1);
+        possibiliMosse[1]=colonna+(nuovaRiga=riga-1);
+        possibiliMosse[2]=String.fromCharCode((colonna.charCodeAt(0)-1))+riga;
+        possibiliMosse[3]=String.fromCharCode((colonna.charCodeAt(0)+1))+riga;
+        possibiliMosse[4]=String.fromCharCode((colonna.charCodeAt(0)+1))+(nuovaRiga=riga+1);
+        possibiliMosse[5]=String.fromCharCode((colonna.charCodeAt(0)-1))+(nuovaRiga=riga+1);
+        possibiliMosse[6]=String.fromCharCode((colonna.charCodeAt(0)-1))+(nuovaRiga=riga-1);
+        possibiliMosse[7]=String.fromCharCode((colonna.charCodeAt(0)+1))+(nuovaRiga=riga-1);
         for(let i=0;i<possibiliMosse.length;i++){
-            if(destinazioneId==possibiliMosse[i]){
+            console.log(possibiliMosse);
+            if(possibiliMosse[i]==destinazioneId){
                 return true;
-            }else
-            {
-                return false;
             }
         }
+        return false;
     }else if(pezzo.classList.contains("Knight")){
         possibiliMosse=new Array();
-        let colonna=origine.charAt(0);
-        let riga=origine.charCodeAt(1);
-        let nuovaRiga;
-        possibiliMosse[0]=String.fromCharCode((colonna.charAt(0)-2))+(nuovaRiga=riga+1);
-        possibiliMosse[1]=String.fromCharCode((colonna.charAt(0)-2))+(nuovaRiga=riga-1);
-        possibiliMosse[2]=String.fromCharCode((colonna.charAt(0)+2))+(nuovaRiga=riga+1);
-        possibiliMosse[3]=String.fromCharCode((colonna.charAt(0)+2))+(nuovaRiga=riga-1);
-        possibiliMosse[4]=String.fromCharCode((colonna.charAt(0)-1))+(nuovaRiga=riga+2);
-        possibiliMosse[5]=String.fromCharCode((colonna.charAt(0)+1))+(nuovaRiga=riga-2);
-        possibiliMosse[6]=String.fromCharCode((colonna.charAt(0)-1))+(nuovaRiga=riga-2);
-        possibiliMosse[7]=String.fromCharCode((colonna.charAt(0)+1))+(nuovaRiga=riga+2);
+        colonna=origine;
+        riga=Number(riga);
+        let nuovaRiga=riga+1;
+        possibiliMosse[0]=String.fromCharCode((colonna.charCodeAt(0)-2))+nuovaRiga;
+        possibiliMosse[2]=String.fromCharCode((colonna.charCodeAt(0)+2))+nuovaRiga;
+        nuovaRiga=riga-1;
+        possibiliMosse[1]=String.fromCharCode((colonna.charCodeAt(0)-2))+nuovaRiga;
+        possibiliMosse[3]=String.fromCharCode((colonna.charCodeAt(0)+2))+nuovaRiga;
+        nuovaRiga=riga+2
+        possibiliMosse[4]=String.fromCharCode((colonna.charCodeAt(0)-1))+nuovaRiga;
+        possibiliMosse[7]=String.fromCharCode((colonna.charCodeAt(0)+1))+nuovaRiga;
+        nuovaRiga=riga-2;
+        possibiliMosse[5]=String.fromCharCode((colonna.charCodeAt(0)+1))+nuovaRiga;
+        possibiliMosse[6]=String.fromCharCode((colonna.charCodeAt(0)-1))+nuovaRiga;
         console.log(possibiliMosse);
+        console.log(destinazioneId);
         for(let i=0;i<possibiliMosse.length;i++){
-            if(destinazioneId==possibiliMosse[i]){
+            console.log(i);
+            if(possibiliMosse[i]==destinazioneId){
                 return true;
-            }else
-            {
-                return false;
             }
         }
-       
+        return false;
     }else
     {
         return true;
