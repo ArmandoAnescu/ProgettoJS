@@ -4,6 +4,7 @@ const caselle = document.getElementsByClassName("spazio");
 let turnoBianco = true;
 whiteCounter = 0;
 blackCounter = 0;
+let showTurno=document.getElementById("turno")
 let punteggio = document.body.querySelectorAll("#Counter");
 Spostamento();
 SpostamentoPezzi();
@@ -17,6 +18,11 @@ function AggiornaPunteggio()
             punteggio[i].textContent=blackCounter;
         }
     }
+    if(turnoBianco){
+        showTurno.textContent="bianco";
+    }else{
+        showTurno.textContent="nero";
+    }
 }
 function Spostamento() {
     for (let i = 0; i < caselle.length; i++) {
@@ -25,7 +31,8 @@ function Spostamento() {
         let riga = 8 - Math.floor(i / 8);
         let colonna = String.fromCharCode(97 + (i % 8));
         let casella = caselle[i];
-        casella.id = colonna + riga;
+        casella.id = colonna+riga;
+        console.log(casella.id);
     }
 }
 function SpostamentoPezzi() {
@@ -90,11 +97,42 @@ function drop(ev) {
     const pezzo = document.getElementById(data)
     const destinazione = ev.currentTarget;
     let destinazioneId = destinazione.id;
-    if (ControlloCattura(destinazione, pezzo)) {
+    if (ControlloCattura(destinazione, pezzo) && MossaLegale(destinazioneId,pezzo)) {
         destinazione.appendChild(pezzo);
     }
     AggiornaPunteggio();
     
+}
+function MossaLegale(destinazioneId,pezzo)
+{
+    let origine=pezzo.parentElement.id;
+    if(pezzo.classList.contains("Pawn")){
+       
+        let colonna=origine.charAt(0);
+        let riga=origine.charAt(1);
+        if(pezzo.classList.contains("Bianco")){
+            riga++;
+
+        }else
+        {
+            riga--;
+        }
+        let posizione=colonna+riga;
+        console.log(posizione);
+        if(destinazioneId==posizione){
+            return true;
+        }else
+        {
+            return false;
+        }
+    }else if(pezzo.classList.contains("King")){
+        for(let i=0;i<8;i++){
+            
+        }
+    }else
+    {
+        return true;
+    }
 }
 /*
 gli otto pedoni si muovono solo in avanti e mangiano in obliquo;

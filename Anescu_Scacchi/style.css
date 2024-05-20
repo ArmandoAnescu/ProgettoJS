@@ -80,6 +80,13 @@ table
     border-radius: 10px;
     padding: 2px;
 }
+p
+{
+    height: auto;
+    bottom: 4%;
+    right: 6%;
+    position: absolute;
+}
 tr,td
 {
     height: auto;
@@ -87,7 +94,7 @@ tr,td
     left: 4%;
     border:  2px solid black;
     padding: 1px;
-  background-color: whitesmoke;  
+    background-color: whitesmoke;  
 }
 #Counter
 {
