@@ -1,0 +1,112 @@
+body {
+    background-color: sienna;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+h1
+{
+    top: 4%;
+    left: 4%;
+    position: absolute;
+    background-color: black;
+    color: whitesmoke;
+    padding: 20px;
+    border: solid white;
+    border-radius: 10px;
+    
+}
+.Scacchiera {
+    width: 85vw;
+    height: 85vw;
+    display: flex;
+    flex-wrap: wrap;/* faccio in modo che la mia schacchiera sia disposta in più linee sul mio contenitore*/
+}
+/*
+vw=viewport width, is a unit that refers to
+a percentage of the width of the view port of the screen
+*/
+.spazio
+{
+    width: 12.5%;
+    height: 12.5%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.TestoCoordinata
+{
+    height: auto;
+    display: flex;
+    top: 4%;
+    left: 4%;
+    position: absolute;
+}
+.nero
+{
+    background-color: rgb(48, 46, 46);
+    color: antiquewhite;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 17px;
+}
+.bianco
+{
+    background-color: rgba(233, 222, 208, 0.822);
+    color: black;
+}
+.Pezzo
+{
+    background-color: transparent;
+    width: 100%;
+    z-index: 1;
+    height: auto;
+}
+.Pezzo img
+{
+    width: 100%;
+    height: auto;
+}
+table
+{
+    background-color: gray;
+    height: auto;
+    bottom: 4%;
+    left: 4%;
+    position: absolute;
+    border: solid black;
+    border-radius: 10px;
+    padding: 2px;
+}
+p
+{
+    height: auto;
+    bottom: 4%;
+    right: 6%;
+    position: absolute;
+}
+tr,td
+{
+    height: auto;
+    bottom: 4%;
+    left: 4%;
+    border:  2px solid black;
+    padding: 1px;
+    background-color: whitesmoke;  
+}
+#Counter
+{
+    background-color: white;
+}
+
+
+@media (min-width:600px) {/*serve a contgrollare width e height di un dispositivo/schermo l'orinetamento e la risoluzione*/
+    .Scacchiera
+    {
+        width: 650px;
+        height: 650px;
+    }
+    
+}

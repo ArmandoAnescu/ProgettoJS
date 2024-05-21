@@ -1,0 +1,58 @@
+body {
+    min-height: 90vh;
+    background: url(Image/background.png);
+    background-size: cover;
+    color: white;
+    font-weight: 500;
+    font-family: Fantasy;
+ }
+
+.immagini {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 710px 0;
+}
+
+.gioco {
+    text-align: center;
+    margin: 10px;
+}
+
+.gioco img {
+    transition: transform 0.3s;
+}
+
+.gioco img:hover {
+    transform: scale(1.1);
+}
+
+.GiochiDisponibili {
+    font-weight: 500;
+    color: #B8C6DC;
+    font-weight: 500;
+    font-size: 1.2rem;
+    font-family: Fantasy;
+    margin: 10px 0;
+}
+h2 {
+    color: #B8C6DC;
+    font-weight: 500;
+    font-size: 1.2rem;
+    font-family: Fantasy;
+    margin: 10px 0;
+}
+
+h1 {
+    text-align: center;
+    margin: 10px;
+    color: #B8C6DC;
+    font-weight: 500;
+    font-size: 2rem;
+    font-family: Fantasy;
+}
+p {
+    text-align: center;
+    margin: 10px;
+    font-size: 1rem;
+}

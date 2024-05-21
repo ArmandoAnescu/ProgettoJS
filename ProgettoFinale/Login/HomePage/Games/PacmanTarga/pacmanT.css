@@ -1,0 +1,59 @@
+
+form{
+    background-color: black;
+    background-size: cover;
+    width: 100vmax;
+    height: 100vmin;
+    color: white;
+}
+.container{
+    width: 50%;
+    margin: auto;
+}
+.griglia{
+    width: 560px;
+    height: 560px;
+    border: solid black;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: black;
+}
+.griglia div{
+    width: 20px;
+    height: 20px;
+}
+.pac-dot{
+    background-color: white;
+    border: 8px solid black;
+    box-sizing: border-box;
+}
+.wall{
+    background-color: blue;
+}
+.power-pellet{
+    background-color: white;
+    border-radius: 10px;
+}
+.lampeg{
+    background-color: red;
+    border: 5px;
+}
+.pinky{
+    background-color: magenta;
+    border: 5px;
+}
+.ink{
+    background-color: cyan;
+    border: 5px;
+}
+.clyde{
+    background-color: orange;
+    border: 5px;
+}
+.pac-man{
+    background-color: yellow;
+    border-radius: 10px;
+}
+.scaredG{
+    background-color: aquamarine;
+}

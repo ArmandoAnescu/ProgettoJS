@@ -1,0 +1,54 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  background-color: black;
+  background-size: cover;
+}
+/*vmin = unità di misura che rappresenta il valore più piccolo tra vw (viewport width) e vh (viewport height)*/
+.barraScore {
+  width: 95vmin;
+  height: 95vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  background: #293447;
+}
+.dettagliGioco{
+  color: #B8C6DC;
+  font-weight: 500;
+  font-size: 1.2rem;
+  font-family: Fantasy;
+  padding: 20px 27px;
+  display: flex;/*Permette il funzionamento di justify-content creando un contenitore*/
+  justify-content: space-between;/*Inserisce lo spazio tra Score e High Score*/
+}
+.areaGioco {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  background: #212837;
+  grid-template: repeat(30, 1fr) / repeat(30, 1fr);/*Forma una griglia con 30 righe e 30 colonne, ogni riga / colonna occupa 1 frazione di spazio disponibile*/
+}
+.areaGioco .food {
+  border-radius: 20px;
+}
+.areaGioco .head {
+  background: #28fc33;
+  border-radius: 5px;
+}
+.controlli {
+  display: none;/*Evita che appaia in basso a sinistra la barra dei controlli*/
+}
+
+button {
+  background-color: #293447;
+  color: #B8C6DC;
+  font-weight: 500;
+  font-size: 1.2rem;
+  font-family: Fantasy;
+  border: 0cm;
+  height: 30px;
+}
